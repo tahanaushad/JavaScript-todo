@@ -1,0 +1,34 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>todo</title>
+    <link rel="stylesheet" href="style.css">
+</head>
+
+<body>
+    <div class="card">
+
+        <div class="inputAndBtn">
+            <form onsubmit="event.preventDefault(); return submitTodo();">
+                <input class="myInput" type="text">
+                <button class="btn" type="submit">Submit</button>
+            </form>
+
+        </div>
+
+        <div class="listItem">
+            <ul id="todoContainer">
+
+            </ul>
+
+        </div>
+    </div>
+
+    <script src="script.js"></script>
+
+</body>
+
+</html>
