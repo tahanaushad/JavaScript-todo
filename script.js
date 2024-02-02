@@ -1,9 +1,18 @@
 let todos = []
+let isEditing = false
+let editingIndex = null
 
 function submitTodo() {
-    myInputEl = document.querySelector(".myInput");
-    if(myInputEl.value == "") return
-    todos.push(myInputEl.value)
+    let myInputEl = document.querySelector(".myInput");
+    if (myInputEl.value == "") return
+    if (isEditing && editingIndex != null) {
+        todos[editingIndex] = myInputEl.value
+        isEditing = false
+    }
+    else {
+
+        todos.push(myInputEl.value)
+    }
     myInputEl.value = ""
 
     renderTodos()
@@ -29,9 +38,16 @@ function renderTodos() {
             doneTodos(i)
         })
 
+        const editBtnEl = document.createElement("button")
+        editBtnEl.innerText = "Edit"
+        editBtnEl.addEventListener("click", function () {
+            editTodos(i)
+        })
+
         todoContainerEl.appendChild(liEl);
         todoContainerEl.appendChild(deleteBtnEl);
         todoContainerEl.appendChild(doneBtnEl);
+        todoContainerEl.appendChild(editBtnEl);
     }
 }
 
@@ -41,9 +57,17 @@ function removeTodos(index) {
 }
 
 function doneTodos(index) {
-document.getElementById(index).style.textDecoration = "line-through"
-    
+    document.getElementById(index).style.textDecoration = "line-through"
+
     // renderTodos()
+}
+
+function editTodos(index) {
+    console.log(todos[index])
+    let myInputEl = document.querySelector(".myInput");
+    myInputEl.value = todos[index]
+    isEditing = true
+    editingIndex = index
 }
 
 
